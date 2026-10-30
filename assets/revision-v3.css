@@ -59,3 +59,17 @@ body.app-mode::before{background-image:linear-gradient(#030507a8,#030507a8),url(
 @media(min-width:761px){.header nav a{font-size:16px}.quick-tabs button{font-size:16px}.overview-actions .btn{font-size:16px}.tile-copy .btn{font-size:16px}}
 /* Compact, centered mobile menu mark: short / long / short. */
 @media(max-width:760px){.menu-btn{align-items:center}.menu-btn span{width:22px;border-radius:3px;flex-shrink:0}.menu-btn span:first-child,.menu-btn span:last-child{width:14px}.menu-btn[aria-expanded=true] span:first-child,.menu-btn[aria-expanded=true] span:last-child{width:22px}}
+/* v3.3.2: slim arena navigation floats over the mobile page. */
+.mobile-nav-backdrop{display:none}
+@media(max-width:760px){
+ .header{z-index:120!important}.header nav,.header nav.open{display:none!important}
+ body.sidebar-open{overflow:hidden}
+ .app-sidebar,.app-mode .app-sidebar{display:none;position:fixed;inset:var(--mobile-nav-top,96px) auto 0 0;width:min(70vw,260px);height:auto;max-height:calc(100dvh - var(--mobile-nav-top,96px));z-index:110;padding:24px 14px 20px;background:rgba(5,7,9,.94);border:0;border-right:1px solid #ffffff0c;box-shadow:15px 0 35px #0003;overflow-y:auto;overscroll-behavior:contain;flex-direction:column;gap:0;scrollbar-width:thin}
+ .sidebar-open .app-sidebar,.sidebar-open.app-mode .app-sidebar{display:flex;padding:24px 14px 20px}
+ .app-sidebar .side-brand{display:none}.app-sidebar .side-label{font-size:8px;letter-spacing:2px;margin:0 12px 14px;color:#767e86}
+ .app-sidebar .side-link{min-height:50px;flex-shrink:0;padding:13px 12px;margin:0 0 4px;gap:12px;font-family:VersaDisplay,sans-serif!important;font-size:17px;line-height:1.2;border-radius:0;color:#c5c9ce;background:transparent;white-space:nowrap}
+ .app-sidebar .side-link>span{display:inline-flex;align-items:center;justify-content:center;width:18px;flex:none}.app-sidebar .side-link svg{width:18px;height:18px}
+ .app-sidebar .side-link.active{color:var(--lime);background:transparent}.app-sidebar .side-link.active::before{left:-14px;top:13px;bottom:13px;width:3px;border-radius:0 2px 2px 0}
+ .app-sidebar .side-link:hover{background:#ffffff06}.app-sidebar .side-bottom{margin-top:14px;border-top:1px solid #ffffff12;padding:17px 12px 4px;gap:17px;flex-shrink:0}.app-sidebar .side-bottom a{font-size:12px}.app-sidebar .side-bottom span{font-size:8px;line-height:1.7}
+ .mobile-nav-backdrop:not([hidden]){display:block;position:fixed;inset:var(--mobile-nav-top,96px) 0 0;z-index:100;border:0;border-radius:0;background:#0004;padding:0;margin:0;width:100%;height:auto;cursor:default;touch-action:none}
+}
