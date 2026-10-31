@@ -194,3 +194,36 @@ dialog.match-dialog{width:min(460px,calc(100vw - 32px));max-width:460px;max-heig
 .setup-panel .match-art:after,.match-dialog .match-art:after{background:linear-gradient(180deg,transparent 40%,#0004 72%,transparent 100%)}
 /* Keep assistance available without covering the setup action buttons. */
 .app-mode:has(.setup-page) .chat-launcher{position:static;display:flex;width:max-content;margin:0 24px 24px auto}
+
+/* v3.16 — one challenge flow, deliberate controls and a branded schedule picker. */
+.setup-buttons>.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;line-height:1;min-height:48px;padding:13px 20px;white-space:nowrap}
+.setup-buttons>.btn>.match-icon{display:block;width:20px;height:20px;align-self:center;margin:0;flex:0 0 20px;vertical-align:initial}
+.setup-buttons>.btn>span{display:block;line-height:1}
+.setup-panel .wizard-game-grid{margin:0}
+.select-menu{background:#d7f58b!important;border:1px solid #e2ffab!important;box-shadow:0 14px 30px #0008}
+.select-menu button[role=option]{color:#142006!important;font-weight:600!important;opacity:1!important;font-size:14px;min-height:43px}
+.select-menu button[aria-selected=true]{color:#d5ff6b!important;background:#111b08!important}
+.select-menu button[role=option]:hover,.select-menu button[role=option]:focus-visible{color:#080e02!important;background:#b8e351!important;outline:2px solid #23350e;outline-offset:-3px}
+.select-toggle[aria-invalid=true]{outline:2px solid #fb967f;outline-offset:2px}
+.schedule-trigger{display:flex;align-items:center;gap:9px;width:100%;min-height:48px;padding:10px 12px;border:1px solid #83929b60;border-radius:6px;background:linear-gradient(135deg,#ffffff04,#ffffff01);color:#e6ecee;text-align:left;font:13px/1.3 VersaBody,sans-serif;cursor:pointer}
+.schedule-trigger>span{min-width:0}.schedule-trigger>.match-icon{width:17px;height:17px;color:#bdc8d0}.schedule-trigger:hover{border-color:#c5ff3888}.schedule-trigger:focus-visible{outline:2px solid var(--lime);outline-offset:3px}
+dialog.schedule-picker{box-sizing:border-box;position:fixed;inset:0;margin:auto;width:min(380px,calc(100% - 32px));max-height:calc(100dvh - 32px);overflow:auto;padding:22px;border-radius:16px;background:#0b1011;color:#edf2ed;border:1px solid #84947f80;box-shadow:0 24px 80px #000b;color-scheme:dark}
+.schedule-picker::backdrop{background:#000b;backdrop-filter:blur(7px)}
+.schedule-heading{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:19px}.schedule-heading .eyebrow{font-size:9px;letter-spacing:1.8px;color:#c9ef89;margin:0 0 7px}.schedule-heading h2{font:29px/1 VersaDisplay,sans-serif;margin:0!important}.schedule-close{display:grid;place-items:center;flex-shrink:0;width:32px;height:32px;border:1px solid #ffffff26;background:#ffffff04;border-radius:7px;color:#d9e2df;font:24px/1 sans-serif;cursor:pointer}
+.schedule-month{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:10px}.schedule-month strong{font:600 14px VersaBody,sans-serif}.schedule-month button{display:grid;place-items:center;width:34px;height:32px;border:1px solid #d7f58b35;background:#d7f58b0b;border-radius:6px;color:#d7f58b;cursor:pointer}.schedule-month button:disabled{opacity:.25;cursor:default}
+.schedule-week,.schedule-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;text-align:center}.schedule-week{font:10px VersaBody,sans-serif;color:#95a5a8;margin-bottom:6px}.schedule-days button,.schedule-days>span{height:34px;min-width:0}.schedule-days button{padding:0;border:1px solid transparent;border-radius:7px;background:transparent;color:#e5ede7;font:13px VersaBody,sans-serif;cursor:pointer}.schedule-days button[aria-current=date]{border-color:#d7f58b65}.schedule-days button[aria-pressed=true]{background:#d7f58b;color:#101804;font-weight:700}.schedule-days button:hover:not(:disabled):not([aria-pressed=true]){background:#d7f58b22}.schedule-days button:disabled{color:#53605f;cursor:default}.schedule-picker button:focus-visible{outline:2px solid #c5ff38;outline-offset:2px}
+.schedule-time{display:flex;align-items:center;justify-content:space-between;gap:16px;border-top:1px solid #ffffff1a;padding-top:15px;margin-top:12px}.schedule-time-label{display:flex;gap:8px;align-items:center;font:14px VersaBody,sans-serif}.schedule-time-label .match-icon{width:18px;color:#d7f58b}.schedule-time-label small{display:block;font-size:10px;color:#9aadaa;margin-top:4px}.schedule-time-fields{display:flex;align-items:center;gap:7px;width:160px}.schedule-time-fields>label{flex:1;min-width:0;font:10px VersaBody,sans-serif;color:#a7b6b2;display:grid;gap:5px}.schedule-time-fields>b{padding-top:16px;color:#d7f58b}.schedule-picker .select-toggle{min-height:39px;padding:8px 27px 8px 11px;background:#d7f58b;color:#172307;border-radius:6px;font-size:14px}.schedule-picker .select-toggle:after{right:12px}.schedule-picker .select-menu{max-height:150px;top:auto;bottom:calc(100% + 6px);z-index:2}.schedule-picker .select-menu button[role=option]{font-size:13px;min-height:33px}
+.schedule-zone{font:10px/1.4 VersaBody,sans-serif;color:#99aaa7;margin:13px 0 0}.schedule-error{color:#ffb1a1;font:12px/1.4 VersaBody,sans-serif;margin:8px 0}.schedule-error:empty{display:none}.schedule-actions{display:flex;gap:10px;align-items:center;margin-top:19px;border-top:1px solid #ffffff1a;padding-top:15px}.schedule-actions>button{border:0;min-height:42px;padding:8px 6px;background:transparent;color:#c4d1cd;font:13px VersaBody,sans-serif;border-radius:6px;cursor:pointer}.schedule-actions>button:first-child{margin-right:auto;color:#a8b7b2}.schedule-actions>.schedule-apply{display:flex;align-items:center;gap:8px;background:#c5ff38;color:#112000;font-weight:700;padding:10px 14px}.schedule-apply .match-icon{width:16px;height:16px}
+@media(max-width:760px){
+ body:not(.legal-page) .header .header-inner{display:flex!important;align-items:center;width:calc(100% - 32px);height:66px;padding:0;gap:0!important}
+ body:not(.legal-page) .header .header-inner>.brand{display:none!important}
+ .header .header-actions{display:flex;align-items:center;width:100%;gap:12px!important}
+ .header .header-actions .menu-btn{order:-1;display:flex!important;align-items:center;justify-content:center;flex-direction:column;gap:5px;margin-right:auto;width:40px;height:44px;padding:7px;background:transparent;border:0}
+ .header .menu-btn span,.header .menu-btn span:first-child,.header .menu-btn span:last-child{width:22px;height:2px}
+ .header .header-x{width:32px!important;height:40px}
+ .header .wallet-btn{max-width:230px;min-height:42px;border-radius:6px;clip-path:none}
+ .centered-hero .hero-inner{padding-top:66px!important}
+ .footer .brand{display:inline-flex!important;align-items:center;gap:9px;margin:0 0 12px}.footer .brand-mark{width:38px;height:38px}.footer .brand-name{display:inline!important;font-size:24px}
+ .setup-platform-time .schedule-trigger{min-height:47px;padding:9px 8px;gap:6px;font-size:11px}.setup-platform-time .schedule-trigger .match-icon{width:14px;height:14px;flex-basis:14px}
+ .setup-buttons>.btn{padding:12px 10px;min-height:48px;font-size:16px;gap:8px}.setup-buttons>.btn>.match-icon{width:18px;height:18px;flex-basis:18px}
+}
