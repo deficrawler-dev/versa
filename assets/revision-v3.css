@@ -227,3 +227,15 @@ dialog.schedule-picker{box-sizing:border-box;position:fixed;inset:0;margin:auto;
  .setup-platform-time .schedule-trigger{min-height:47px;padding:9px 8px;gap:6px;font-size:11px}.setup-platform-time .schedule-trigger .match-icon{width:14px;height:14px;flex-basis:14px}
  .setup-buttons>.btn{padding:12px 10px;min-height:48px;font-size:16px;gap:8px}.setup-buttons>.btn>.match-icon{width:18px;height:18px;flex-basis:18px}
 }
+
+/* v3.17 — original menu mark, shared header centerline, direct Home navigation. */
+.menu-mark{display:none}
+@media(max-width:760px){
+ .header .header-actions{min-height:44px;align-items:center!important}
+ .header .header-actions .menu-btn{position:relative;flex:0 0 44px;width:44px;height:44px;min-height:44px;padding:0!important;margin-top:0!important;margin-bottom:0!important;align-self:center;line-height:0;appearance:none;-webkit-appearance:none;color:#eaf0e4}
+ .header .menu-btn .menu-mark{display:block;position:absolute;left:50%;top:50%;width:24px;height:24px;transform:translate(-50%,-50%);pointer-events:none}
+ .menu-mark-close{display:none}.menu-btn[aria-expanded=true] .menu-mark-lines{display:none}.menu-btn[aria-expanded=true] .menu-mark-close{display:block}
+ .header .header-actions .header-x{display:flex;align-items:center;justify-content:center;height:44px;margin-top:0!important;margin-bottom:0!important;align-self:center}
+ .header .header-actions .wallet-btn{min-height:44px;margin-top:0!important;margin-bottom:0!important;align-self:center}
+ .header .menu-btn:focus-visible{outline:2px solid var(--lime);outline-offset:1px;border-radius:6px}
+}
