@@ -132,3 +132,18 @@ body::before{background-image:linear-gradient(90deg,#0204059c,#02040580),url('/a
  .type-cursor{vertical-align:baseline;margin-left:4px;width:2px}
 }
 @media(prefers-reduced-motion:reduce){.landing-carousel .art-card,.landing-carousel .art-card>img{transition:none}.landing-carousel .art-card:hover,.landing-carousel .art-card:hover>img{transform:none}.carousel-playback{display:none}.headline-writing{position:static}}
+
+/* v3.8 — black navigation, mobile wordmark and a centered sign-in prompt. */
+.app-sidebar,.app-mode .app-sidebar{background-color:#06080af5;background-image:linear-gradient(135deg,#ffffff02,#0003),var(--glass-grain)}
+.challenge-signin-card{width:min(440px,100%);margin:52px auto 60px;padding:30px 28px;text-align:center}
+.challenge-signin-card p{max-width:340px;margin:0 auto 23px;line-height:1.6}
+.challenge-signin-card .btn{display:inline-flex;width:auto;min-width:126px;margin-inline:auto;justify-content:center}
+@media(max-width:760px){
+ .header .brand-name{display:inline!important;font-size:20px!important;line-height:1;letter-spacing:-.5px;color:#f4f4ef}
+ .header .brand{gap:6px;flex:none}
+ .header .brand-mark{width:31px!important;height:31px!important}
+ .header-actions{gap:9px!important}
+ .header .wallet-btn{padding:10px 12px!important}
+ .challenge-signin-card{margin:38px auto 48px;padding:28px 22px}
+}
+@media(max-width:350px){.header .brand-name{font-size:17px!important}.header .brand-mark{width:25px!important;height:27px!important}.header .brand{gap:4px}.header-actions{gap:7px!important}.header .wallet-btn{padding:10px 9px!important;font-size:11px!important}.header-x{width:18px!important;min-width:18px!important}.header .wallet-btn.connected .wallet-address{font-size:10px}}
