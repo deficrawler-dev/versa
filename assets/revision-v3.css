@@ -96,3 +96,39 @@ dialog.auth-dialog{width:min(420px,calc(100% - 40px));padding:26px;max-height:ca
 dialog.wallet-flow-dialog:not(.auth-dialog){width:min(420px,calc(100% - 48px));max-height:calc(100dvh - 48px);padding:25px;border-radius:12px;background-color:#090d0af5;background-image:radial-gradient(ellipse at 0 0,#bbdd3412,transparent 65%),var(--glass-grain)}
 @media(max-width:760px){.btn,.wallet-btn{clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px));letter-spacing:.035em}.chat-launcher{clip-path:none}.app-mode main{border:0}.app-sidebar,.app-mode .app-sidebar{background-color:#060a08ee;background-image:linear-gradient(#d8edb704,#0001),var(--glass-grain)}dialog.auth-dialog{width:min(340px,calc(100% - 40px));padding:24px 22px}.auth-dialog .dialog-head h2{font-size:31px!important}.auth-wallet-card{min-height:58px;padding:11px 10px;gap:8px}.auth-wallet-card strong{font-size:13px}.auth-subtitle{margin-bottom:17px}.auth-security{margin-top:19px}}@media(max-width:350px){dialog.auth-dialog{padding:24px 17px;width:calc(100% - 32px)}.auth-wallet-card{padding:10px 8px;gap:7px}.auth-wallet-card strong{font-size:12px}.auth-dialog .dialog-head h2{font-size:29px!important}.auth-security{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.btn,.wallet-btn{transition:none}.btn:hover:not(:disabled),.wallet-btn:hover{transform:none}}
+
+/* v3.7 — full-bleed game strip, mobile motion and deeper smoked surfaces. */
+:root{--glass-surface:#050807ee}
+body::before{background-image:linear-gradient(90deg,#0204059c,#02040580),url('/assets/versa-arena.webp')}
+.landing-mode::before{background-image:linear-gradient(180deg,#030507 0%,#030507f0 10%,#030507c8 37%,#030507cc 72%,#030507ed 100%),url('/assets/versa-hero-balanced.webp')}
+.app-sidebar,.app-mode .app-sidebar{background-color:#070c04f5;background-image:linear-gradient(135deg,#749a1310,#01040266),var(--glass-grain);border-right-color:#bbdc6a1c}
+.side-label{display:none!important}
+.panel,.profile-identity,.profile-stats,.quick-composer,.card{background-color:var(--glass-surface);background-image:linear-gradient(125deg,#ffffff02,transparent 60%),var(--glass-grain)}
+.auth-x-button.btn{font:700 19px/1.2 VersaDisplay,sans-serif;letter-spacing:.07em;border-radius:0;min-height:49px;background-color:#b9ec3c;background-image:linear-gradient(110deg,#ddff8a55,#c5f34800 55%,#51771922),var(--glass-grain);color:#111808;box-shadow:inset 0 1px 0 #f5ffd896,inset 0 -2px 0 #40581140,0 4px 14px #0003;border:1px solid #e5ff9d7a}
+.landing-carousel{position:relative}
+.landing-carousel .landing-games{display:flex!important;gap:20px!important;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain;padding:8px 1px 12px;scroll-padding-inline:1px}
+.landing-carousel .landing-games::-webkit-scrollbar{display:none}
+.landing-carousel .landing-games>.art-card{flex:0 0 calc((100% - 40px)/2.65);max-width:none;min-width:0;aspect-ratio:16/9!important;height:auto!important;scroll-snap-align:start;transition:transform .22s,border-color .22s,box-shadow .22s}
+.landing-carousel .art-card>img{object-fit:cover!important;padding:0!important;transition:transform .45s,filter .3s}
+.landing-carousel .landing-game .art-label{padding:35px 15px 14px!important}
+.landing-carousel .landing-game .art-label strong{font-size:23px!important}
+.landing-carousel .landing-game .art-label small{font-size:13px}
+.landing-carousel .carousel-controls{display:flex;justify-content:center;align-items:center;gap:12px;margin:9px 0 0}
+.carousel-controls[hidden]{display:none!important}
+.carousel-arrow{width:44px;height:40px;background:#0b1009dd;border:1px solid #c5ff3855;color:var(--lime);border-radius:0;cursor:pointer;font-size:23px;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px))}
+.carousel-arrow:hover{background:#1c2910;border-color:var(--lime)}
+.carousel-playback{border:0;background:transparent;color:#a9b49c;font:12px VersaBody,sans-serif;min-height:40px;padding:7px;cursor:pointer}
+@media(hover:hover){.landing-carousel .art-card:hover{transform:translateY(-4px);border-color:#c5ff38bb;box-shadow:0 6px 18px #0007;filter:none}.landing-carousel .art-card:hover>img{transform:scale(1.035);filter:brightness(1.1)}}
+@media(max-width:760px){
+ body::before{background-image:linear-gradient(#020407bc,#020407dc),url('/assets/versa-arena.webp')}
+ .landing-mode::before{background-image:linear-gradient(180deg,#030507 0%,#030507ef 13%,#030507c8 48%,#030507e8 100%),url('/versa-hero-mobile.png')}
+ .app-sidebar,.app-mode .app-sidebar{background-color:#060c04f7;background-image:linear-gradient(135deg,#749a1310,#01040266),var(--glass-grain)}
+ .landing-carousel .landing-games>.art-card{flex:0 0 88%!important;max-width:88%;aspect-ratio:16/9!important}
+ .landing-carousel .landing-game .art-label{padding:32px 12px 11px!important}
+ .landing-carousel .landing-game .art-label strong{font-size:20px!important}
+ .landing-carousel .landing-game .art-label small{font-size:11px}
+ .headline-writing{display:block;inset:0;text-align:center;line-height:1.05;min-height:1.05em}
+ .headline-writing [data-animated-headline]{display:inline;color:var(--lime);visibility:visible;opacity:1}
+ .type-cursor{vertical-align:baseline;margin-left:4px;width:2px}
+}
+@media(prefers-reduced-motion:reduce){.landing-carousel .art-card,.landing-carousel .art-card>img{transition:none}.landing-carousel .art-card:hover,.landing-carousel .art-card:hover>img{transform:none}.carousel-playback{display:none}.headline-writing{position:static}}
