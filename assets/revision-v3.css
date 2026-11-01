@@ -311,3 +311,18 @@ body.landing-mode::before{background-image:linear-gradient(180deg,#030507e8 0%,#
 /* Keep animated text and focus decoration from creating page-level horizontal scroll. */
 body.landing-mode{overflow-x:clip}
 @media(min-width:761px){.quick-composer>.btn{font-size:16px}}
+
+/* v3.20 — shared inset orange line/dot signature and balanced hero shade. */
+:root{--button-accent:#eea15c}
+.btn::after,.select-toggle::after,.header .header-actions .wallet-btn::after,.setup-panel .btn::after,.match-dialog .btn::after,.auth-dialog .btn::after{content:''!important;display:block!important;position:absolute!important;inset:auto!important;top:5px!important;right:9px!important;width:27px!important;height:4px!important;background:linear-gradient(var(--button-accent),var(--button-accent)) left center/18px 2px no-repeat,radial-gradient(circle,var(--button-accent) 1.5px,transparent 1.8px) right center/4px 4px no-repeat!important;border:0!important;border-radius:0!important;box-shadow:none!important;clip-path:none!important;transform:none!important;opacity:.95!important;z-index:2!important;pointer-events:none!important}
+/* Dropdown arrows keep their own centerline; the accent is independent. */
+/* Restore the original functional chevron after moving only its decoration. */
+.select-toggle::before{content:'';position:absolute;right:17px;top:calc(50% - 5px);width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);pointer-events:none}
+.select-toggle[aria-expanded=true]::before{transform:translateY(4px) rotate(225deg)}
+body.landing-mode::before{background-image:linear-gradient(180deg,#030507ed 0%,#030507bf 11%,#03050761 36%,#03050774 67%,#030507d4 100%),url('/assets/versa-hero-balanced.webp')}
+@media(max-width:760px){body.landing-mode::before{background-image:linear-gradient(180deg,#030507f0 0%,#030507c4 12%,#03050761 43%,#03050780 68%,#030507e2 100%),url('/versa-hero-mobile.png')}}
+.auth-wallet-card,.auth-more,.schedule-actions>button{position:relative}
+.chat-launcher::after,.auth-wallet-card::after,.auth-more::after,.schedule-actions>button::after,.carousel-arrow::after{content:'';display:block;position:absolute;top:5px;right:9px;width:27px;height:4px;background:linear-gradient(var(--button-accent),var(--button-accent)) left center/18px 2px no-repeat,radial-gradient(circle,var(--button-accent) 1.5px,transparent 1.8px) right center/4px 4px no-repeat;border:0;pointer-events:none}
+.carousel-arrow{position:relative}.carousel-arrow::after{width:16px;right:5px;top:4px;background-size:9px 2px,3px 3px}
+.schedule-trigger{position:relative}
+.schedule-trigger::after{content:'';position:absolute;top:5px;right:8px;width:23px;height:4px;background:linear-gradient(var(--button-accent),var(--button-accent)) left center/14px 2px no-repeat,radial-gradient(circle,var(--button-accent) 1.5px,transparent 1.8px) right center/4px 4px no-repeat;pointer-events:none}
