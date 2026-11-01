@@ -1,0 +1,14 @@
+Versa Arena Heavy, version 1.0
+
+Original angular uppercase display alphabet created for Versa, 2026.
+The typeface recreates the broad, cut-corner visual direction of the approved
+hero mockup. The mockup itself did not identify an existing named font.
+
+Permission is granted to use, copy, embed, modify and distribute this font
+and its source, for any purpose, without charge. It is provided as-is,
+without warranty.
+
+Included glyphs: English A-Z, lowercase mapped to uppercase, space,
+period, comma, hyphen, exclamation mark and question mark.
+Use for the specified hero headlines and short English display labels.
+Use VersaBody for profile names, usernames, numbers and other languages.

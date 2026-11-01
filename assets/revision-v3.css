@@ -262,3 +262,52 @@ dialog.schedule-picker{box-sizing:border-box;position:fixed;inset:0;margin:auto;
  .quick-heading{padding-bottom:0}.quick-heading>strong{font-size:23px}
 }
 @media(max-width:350px){.header .header-actions{gap:5px!important;margin-left:9px}.header .wallet-btn{font-size:10px!important;padding:9px 8px!important}.header .header-actions .header-x{width:23px!important;flex-basis:23px}.header .brand-mark{width:33px!important}}
+
+/* v3.19 — custom block display type and angular branded controls. */
+@font-face{font-family:VersaArena;src:url('/assets/versa-arena-heavy.woff') format('woff');font-style:normal;font-weight:900;font-display:swap}
+:root{--arena-font:VersaArena,'Russo One',Impact,sans-serif}
+.centered-hero h1.display{font-family:var(--arena-font)!important;font-weight:900!important;font-synthesis:none;letter-spacing:-.025em!important;font-size:clamp(72px,7vw,112px);line-height:1.12!important;margin:0 auto 23px!important;text-wrap:nowrap}
+.centered-hero .animated-headline{font-family:inherit;font-size:clamp(62px,6vw,96px);line-height:1.14!important;min-height:1.14em;letter-spacing:-.028em}
+.centered-hero .headline-reserve,.centered-hero .headline-writing{line-height:1.14!important}
+.centered-hero .type-cursor{width:2px;height:.67em;margin-left:5px}
+body.landing-mode::before{background-image:linear-gradient(180deg,#030507e8 0%,#030507ad 11%,#03050735 36%,#03050748 67%,#030507c9 100%),url('/assets/versa-hero-balanced.webp');background-size:cover;background-position:center}
+.landing-mode .header{background:linear-gradient(#030507ed,#030507a8);border-bottom:0}
+.landing-mode .header-inner{width:min(1340px,calc(100% - 72px));height:82px;gap:24px}
+.header nav a{font-family:VersaBody,Arial,sans-serif!important;font-weight:600;letter-spacing:0;font-size:15px!important;padding:11px 0;position:relative}
+.header nav a.active:after{content:'';position:absolute;left:0;right:0;bottom:2px;height:2px;background:var(--lime)}
+.header .header-actions .wallet-btn{position:relative;isolation:isolate;overflow:visible;clip-path:polygon(9px 0,100% 0,100% calc(100% - 9px),calc(100% - 9px) 100%,0 100%,0 9px)!important;border:0!important;border-radius:0!important;background:#b6f335!important;background-image:none!important;padding:1px 17px!important;min-height:46px;box-shadow:none!important;color:#edf4e5;font-family:VersaDisplay,sans-serif!important;letter-spacing:.065em;gap:10px}
+.header .header-actions .wallet-btn:before{content:''!important;display:block!important;position:absolute!important;inset:1px!important;clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px)!important;background:linear-gradient(120deg,#1b2519,#090e0c 72%)!important;z-index:-1!important;pointer-events:none}
+.header .header-actions .wallet-btn:after{content:''!important;display:block!important;position:absolute!important;left:auto!important;right:6px!important;top:4px!important;bottom:auto!important;width:16px;height:2px;background:var(--lime)!important;border:0!important;z-index:0!important;pointer-events:none;clip-path:none!important}
+.header .header-actions .wallet-btn .connect-icon{color:var(--lime)}
+.header .header-actions .wallet-btn:hover{filter:brightness(1.16);transform:none}.header .header-actions .wallet-btn:focus-visible{outline:0;box-shadow:none!important;background:#fff!important}
+.centered-hero .hero-inner{width:min(1240px,calc(100% - 72px));padding-top:58px;padding-bottom:34px}
+.centered-hero .eyebrow{margin:0 0 25px;font-size:10px;letter-spacing:2px}
+.quick-tabs{margin-bottom:17px;gap:30px}.quick-tabs button{font-size:17px!important;padding:11px 8px 13px}
+.quick-composer{grid-template-columns:minmax(230px,1.1fr) minmax(250px,1.25fr) minmax(125px,.6fr) minmax(200px,.9fr);align-items:end;gap:19px;padding:27px 29px 21px;background-color:#080d0ef5;backdrop-filter:blur(10px);border-color:#b1c3bc40;border-radius:10px}
+.quick-heading{grid-column:1/-1;text-align:left;align-self:start;gap:0}.quick-heading strong{font-family:var(--arena-font)!important;font-size:23px!important;font-weight:900!important;line-height:1.15;letter-spacing:-.02em!important}
+.quick-composer>label{min-width:0;font:600 13px VersaBody,Arial,sans-serif;gap:10px}
+.quick-composer input,.quick-composer .hero-game-toggle{min-height:60px;height:60px;border-radius:6px}
+.quick-composer .hero-game-toggle{padding-left:38%;padding-right:36px}.hero-game-toggle>img{width:40%}.hero-game-toggle>strong{font-size:18px;white-space:nowrap}
+.quick-opponent-field{position:relative;display:block}.quick-opponent-field>.match-icon{position:absolute;left:14px;top:20px;width:20px;height:20px;color:#b2bdbb;pointer-events:none}.quick-composer .quick-opponent-field input{padding-left:45px;font-size:15px;text-align:left}
+.quick-entry{display:flex;flex-direction:column;gap:10px;align-items:stretch;padding:0}.quick-entry>span{font:600 13px VersaBody,sans-serif;text-transform:none;letter-spacing:0;color:#b3b7be}.quick-entry strong{display:flex;align-items:center;justify-content:center;gap:9px;white-space:nowrap;min-height:60px;padding:12px 10px;font:600 14px VersaBody,sans-serif;border:1px solid #83908555;border-radius:6px;background:#070b0c}.quick-entry .match-icon{width:21px;height:21px;color:#c8d0c9}
+.quick-composer>.btn{display:flex;align-items:center;justify-content:center;gap:12px;min-height:60px;font-family:var(--arena-font)!important;font-size:17px;letter-spacing:-.025em;padding:12px 17px;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));background:var(--lime);box-shadow:none}
+.quick-composer>.btn>.match-icon{width:22px;height:22px;flex-shrink:0}.quick-composer .composer-note{grid-column:1/-1;border-top:1px solid #ffffff14;padding-top:14px;margin:0;font:12px/1.4 VersaBody,sans-serif!important;color:#96a29f;text-align:left}
+@media(min-width:761px){.header nav [data-nav=home],.app-sidebar .side-link[href='/#home']{display:none}.landing-mode .header nav{gap:25px;flex:1;justify-content:center}.landing-mode .header-actions{gap:16px;flex-shrink:0}.landing-mode .quiz-shortcut{margin-top:24px}}
+@media(min-width:761px) and (max-width:1190px){.landing-mode .header-inner{width:calc(100% - 40px);gap:16px}.landing-mode .header nav{gap:17px}.header nav a{font-size:13px!important}.landing-mode .header .brand-name{font-size:22px}.quick-composer{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}.quick-composer>.btn{grid-column:auto}.quick-heading{grid-column:1/-1}.quick-entry strong{justify-content:flex-start}.quick-composer .hero-game-toggle>strong{font-size:19px}.centered-hero h1.display{font-size:90px}.centered-hero .animated-headline{font-size:72px}}
+@media(max-width:760px){
+ body.landing-mode::before{background-image:linear-gradient(180deg,#030507ed 0%,#030507b5 12%,#0305073d 43%,#03050766 68%,#030507da 100%),url('/versa-hero-mobile.png');background-position:center}
+ .landing-mode .header-inner{width:calc(100% - 32px);height:68px;gap:0}.header .header-actions .wallet-btn{padding:1px 12px!important;min-height:44px;letter-spacing:.04em;font-size:12px!important;gap:7px}
+ .centered-hero .hero-inner{width:calc(100% - 32px)!important;padding:38px 0 30px!important}
+ .centered-hero h1.display{font-size:clamp(44px,12vw,78px)!important;line-height:1.14!important;letter-spacing:-.025em!important;max-width:100%!important;margin-bottom:26px!important}
+ .centered-hero .animated-headline{font-size:clamp(24px,8.1vw,54px)!important;line-height:1.16!important;min-height:1.16em;letter-spacing:-.025em!important}
+ .centered-hero .eyebrow{font-size:8px;letter-spacing:1.5px;margin-bottom:20px}.type-cursor{margin-left:3px!important}
+ .quick-tabs{gap:19px;margin-bottom:13px}.quick-tabs button{font-size:13px!important;padding:9px 0 12px}.soon-mini{font-size:8px}
+ .quick-composer{grid-template-columns:minmax(0,1fr);gap:17px;padding:22px 17px 18px}.quick-heading{text-align:left}.quick-heading strong{font-size:20px!important}.quick-composer>label,.quick-composer>.btn,.quick-composer .quick-entry{grid-column:1/-1}
+ .quick-composer .hero-game-toggle{height:61px;min-height:61px;padding-left:39%;padding-right:30px}.quick-composer .hero-game-toggle>strong{font-size:19px}
+ .quick-entry{display:flex;flex-direction:row!important;align-items:center!important;justify-content:space-between;gap:12px}.quick-entry strong{min-height:36px;border:0;background:none;justify-content:flex-end;padding:0;font-size:13px}.quick-entry>span{font-size:12px}.quick-entry small{font-size:10px}
+ .quick-composer>.btn{font-size:17px;min-height:55px;gap:12px}.quick-composer .composer-note{font-size:11px!important;padding-top:13px;text-align:left}
+}
+@media(max-width:350px){.header .header-actions .wallet-btn{padding-inline:8px!important;font-size:11px!important}.quick-composer .hero-game-toggle>strong{font-size:16px}.quick-composer>.btn{font-size:15px}.quick-heading strong{font-size:18px!important}.quick-tabs{gap:13px}}
+/* Keep animated text and focus decoration from creating page-level horizontal scroll. */
+body.landing-mode{overflow-x:clip}
+@media(min-width:761px){.quick-composer>.btn{font-size:16px}}
