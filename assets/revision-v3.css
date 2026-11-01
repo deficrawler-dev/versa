@@ -332,3 +332,47 @@ body.landing-mode::before{background-image:linear-gradient(180deg,#030507ed 0%,#
  .side-x svg{display:block;width:17px;height:17px;flex:0 0 17px}.app-sidebar .side-bottom .side-x span{font:11px VersaMenu,sans-serif;letter-spacing:0;color:inherit}
  body.landing-mode::before{background-image:linear-gradient(180deg,#030507f0 0%,#030507c4 12%,#03050761 43%,#03050780 68%,#030507e2 100%),url('/versa-hero-mobile.png')}
 }
+
+/* v3.22 — tournament preview, complete game artwork and image badge. */
+.tournament-page .wizard-layout{gap:20px}
+#tournament-preview-form{display:flex;flex-direction:column;gap:22px;padding:26px}
+#tournament-preview-form label{display:flex;flex-direction:column;gap:9px;font-size:13px}
+#tournament-preview-form .form-two{gap:16px}
+#tournament-preview-form textarea{height:112px;min-height:112px;text-align:center;padding:42px 14px;line-height:24px;resize:vertical}
+#tournament-preview-form textarea:not(:placeholder-shown){padding:14px;text-align:left}
+#tournament-preview-form textarea::placeholder{color:#a1aaa5;opacity:1}
+.tournament-format-strip{display:flex;align-items:center;justify-content:space-between;gap:12px;border-block:1px solid #ffffff15;padding:14px 0;font-size:13px;color:#bec7bd}
+.tournament-format-strip span:last-child{color:var(--lime)}
+.tournament-unavailable{display:flex;align-items:center;gap:12px;padding:14px;background:#c7fa4b08;border:1px solid #c7fa4b20;border-radius:6px;color:#a8b1a8;font-size:12px;line-height:1.5}
+.tournament-unavailable .coming-soon{flex-shrink:0;background:#c7fa4b12;color:var(--lime);font-size:10px}
+.tournament-page .tournament-bracket{padding:24px;background:linear-gradient(145deg,#111912f5,#080c0bf7);border-color:#c7fa4b35}
+.bracket-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+.bracket-heading .eyebrow{font:10px VersaMenu,sans-serif;letter-spacing:1.8px;color:#aeb8a9;margin:0}
+.bracket-trophy{display:grid;place-items:center;width:38px;height:38px;border:1px solid #c7fa4b33;border-radius:50%;color:var(--lime);background:#c7fa4b0b}
+#tournament-summary h2{font-size:28px;margin:0 0 6px;overflow-wrap:anywhere}
+#tournament-summary .bracket-game{margin:0 0 24px;font-size:13px;color:#abb5aa}
+.bracket-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid #ffffff18;border-radius:7px;padding:18px 0;background:#0003}
+.bracket-stats>div{text-align:center;display:flex;flex-direction:column;gap:5px}
+.bracket-stats>div+div{border-left:1px solid #ffffff18}
+.bracket-stats strong{font:28px/1 VersaMenu,sans-serif;color:var(--lime)}
+.bracket-stats span{font-size:12px;color:#adb7ac}
+.bracket-path{display:flex;align-items:center;justify-content:center;gap:9px;margin:26px 0 12px}
+.bracket-path span{height:1px;width:26px;background:#c7fa4b50;position:relative}
+.bracket-path span::after{content:'';position:absolute;right:0;top:-2px;width:5px;height:5px;border-radius:50%;background:var(--lime)}
+.bracket-path b{display:grid;place-items:center;border:1px solid var(--lime);width:34px;height:34px;transform:rotate(45deg);color:var(--lime);font:16px VersaMenu,sans-serif}
+.bracket-path b{transform:none;border-radius:50%}
+#tournament-summary .bracket-caption{text-align:center;font-size:13px;color:#d6ded2;margin:0 0 23px}
+.bracket-preview-note{display:block;text-align:center;border-top:1px solid #ffffff12;padding-top:16px;font-size:11px;color:#8d998b}
+.wizard-page .game-carousel .wizard-game-grid>.game-choice{aspect-ratio:16/9!important;overflow:hidden;line-height:normal}
+.wizard-page .game-choice>img{position:absolute!important;inset:0;width:100%!important;height:100%!important;object-fit:contain!important;padding:0!important;background:transparent!important}
+.wizard-page .game-choice .art-label{background:linear-gradient(transparent,#0008)!important;padding:16px 12px 8px!important}
+.overview-tournaments .tournament-image-badge{position:absolute;top:14px;right:14px;z-index:3;margin:0!important;background:#080e0de8;color:var(--lime);border:1px solid #c7fa4b65;letter-spacing:.6px;font-size:10px;padding:7px 10px;display:block}
+@media(max-width:760px){
+ #tournament-preview-form{padding:20px 16px;gap:19px}
+ .tournament-page .page-intro{font-size:14px;margin-bottom:22px}
+ .tournament-page .section-title{font-size:29px!important}
+ .tournament-page .wizard-layout{gap:16px}
+ .tournament-page .tournament-bracket{padding:20px}
+ .overview-tournaments .tournament-image-badge{top:12px;right:12px}
+ .wizard-page .game-choice .art-label strong{font-size:17px!important}
+}
