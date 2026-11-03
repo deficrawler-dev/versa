@@ -423,3 +423,17 @@ body .btn,body .setup-panel .btn,body .match-dialog .btn{border-radius:0!importa
 
 .tournament-live-page .section-head{padding-right:195px}.tournament-actions+.error:empty{display:none}.live-tournament .tournament-rules{margin-top:20px}@media(max-width:760px){.tournament-live-page .section-head{padding-right:0}}
 @media(min-width:761px){.tournament-live-page{padding-top:88px!important}.tournament-live-page .section-head{padding-right:0}}
+
+/* Filled lemon buttons: labels and icons inherit the dark foreground. */
+.btn:not(.outline):not(.ghost),.chat-launcher,.schedule-apply{
+  color:#090e04!important;
+  -webkit-text-fill-color:#090e04;
+}
+:is(.btn:not(.outline):not(.ghost),.chat-launcher,.schedule-apply,.select-toggle) *{
+  color:inherit!important;
+  -webkit-text-fill-color:inherit;
+}
+.wallet-btn .wallet-address{
+  color:inherit!important;
+  -webkit-text-fill-color:inherit;
+}
