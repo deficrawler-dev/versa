@@ -489,3 +489,23 @@ body .match-dialog .btn.outline::after{display:none!important}
 .escrow-payment-details dl{display:block}
 .escrow-payment-details dl>div{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:center;border-bottom:1px solid #77866b40}
 .escrow-payment-details dt,.escrow-payment-details dd{border-bottom:0}
+
+.wallet-dashboard{max-width:1000px;margin-inline:auto}
+.wallet-dashboard .panel{padding:clamp(14px,3vw,24px);margin:0}
+.wallet-dash-address{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.wallet-dash-address>div{min-width:0}
+.wallet-dash-address small,.wallet-dash-asset small{display:block;font-size:10px;letter-spacing:.1em;color:#bac9ad}
+.wallet-dash-address code{display:block;margin-top:8px;font-size:12px;overflow-wrap:anywhere;user-select:all}
+.wallet-dash-toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:16px 0}
+.wallet-dash-toolbar p{margin:0;color:#b7ca9f;font-size:12px}
+.wallet-dashboard .btn{font-size:10px;min-height:42px}
+.wallet-dash-assets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.wallet-dash-asset h2,.wallet-dash-history h2{font-size:20px;margin:0 0 10px}
+.wallet-dash-asset>strong{display:block;margin:7px 0 12px;color:var(--lime);font-size:clamp(16px,4vw,30px);overflow-wrap:anywhere}
+.wallet-dash-asset>div{display:flex;justify-content:space-between;gap:6px;flex-wrap:wrap;border-top:1px solid #7a90614d;padding-top:10px;font-size:12px;overflow-wrap:anywhere}
+.wallet-dashboard .wallet-dash-history{margin-top:16px}
+.wallet-dash-history ul{list-style:none;padding:0;margin:0}
+.wallet-dash-history li{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid #7a90614d;overflow-wrap:anywhere}
+.wallet-dash-history li>div{min-width:0}
+.wallet-dash-history li>div+div{text-align:right}
+.wallet-dash-history li span{display:block;color:#bac9ad;font-size:12px;margin-top:4px}
