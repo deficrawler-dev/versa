@@ -552,8 +552,8 @@ body .match-dialog .btn.outline::after{display:none!important}
 .account-popup .account-identity>div>strong{display:block;font-size:clamp(15px,4vw,21px)}
 .account-x-badge{display:inline-flex;align-items:center;gap:7px;border:1px solid #a3bf6740;padding:4px 8px;font-size:11px;line-height:1.2;color:#dfe6d6}
 .account-x-badge svg{width:14px;height:14px;flex:none}
-.wallet-dashboard .wallet-empty{width:100%;max-width:560px;box-sizing:border-box;margin:14px auto 30px;padding:clamp(20px,5vw,42px);text-align:center;display:grid;justify-items:center;gap:12px;background:radial-gradient(ellipse at top,#b9ed2915,transparent 65%),#101413;border-color:#a3bf6760}
-.wallet-empty-mark{display:grid;place-items:center;width:66px;height:66px;border:1px solid #a3bf6760;color:var(--lime);background:#cbff3610}
-.wallet-empty-mark svg{width:32px;height:32px}
+.wallet-dashboard .wallet-empty{width:100%;max-width:560px;box-sizing:border-box;margin:14px auto 30px;padding:clamp(22px,6vw,48px) 8px;text-align:center;display:grid;justify-items:center;gap:12px}
+.wallet-empty-mark{display:grid;place-items:center;color:var(--lime);margin-bottom:4px}
+.wallet-empty-mark svg{display:block;width:clamp(42px,12vw,58px);height:auto}
 .wallet-empty h2,.wallet-empty p{margin:0}
 .wallet-empty .btn{width:min(100%,280px);margin-top:6px}
