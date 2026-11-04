@@ -589,7 +589,8 @@ function renderAdminEscrows(root,jobs){
   const ready=account.wallet===p.terms.authority&&!!escrowConnection(p.terms.authority,false);
   card.innerHTML=`<div class="admin-escrow-meta"><div><small>${p.kind==='tournament'?'Tournament':'Challenge'}</small><h2>${escape(p.terms.competitionId)}</h2></div><strong>${escape(String(p.status||'pending').replaceAll('_',' '))} · ${p.fundedCount||0}/${p.terms.wallets.length} funded</strong></div>
   <p>Settlement wallet <code>${escape(p.terms.authority)}</code></p>${adminEscrowWalletState(p)}
-  <div class="admin-escrow-actions">${action?`<button class="btn" data-admin-task="${action}" ${!ready|| (action==='pay'&&!p.winnerWallet)?'disabled':''}>${label}</button>`:''}<button class="btn outline" data-admin-task="sync">Sync escrow</button></div>`;
+  ${p.canActivate&&Number.isFinite(p.terms.fundingDeadline)?`<p>Funding deadline: <time datetime="${new Date(p.terms.fundingDeadline*1000).toISOString()}">${escape(new Date(p.terms.fundingDeadline*1000).toLocaleString())}</time></p>`:''}
+  <div class="admin-escrow-actions">${action==='activate'?'<button class="btn outline" data-admin-task="check">Check on Devnet</button>':''}${action?`<button class="btn" data-admin-task="${action}" ${!ready|| (action==='pay'&&!p.winnerWallet)?'disabled':''}>${label}</button>`:''}<button class="btn outline" data-admin-task="sync">Sync escrow</button></div>`;
   root.append(card);
  });
  if(!jobs.length)root.textContent='No open escrow operations.';
@@ -625,6 +626,33 @@ async function connectAdminEscrow(p,choice){
  }
  if(!escrowConnection(expected,false))throw Error('Your wallet did not expose a transaction connection. Reconnect and try again.');
 }
+async function simulateAdminActivation(tx){
+ const bytes=tx.serialize({requireAllSignatures:false,verifySignatures:false});
+ const response=await fetch('https://api.devnet.solana.com',{
+  method:'POST',headers:{'Content-Type':'application/json'},signal:AbortSignal.timeout(15000),
+  body:JSON.stringify({jsonrpc:'2.0',id:1,method:'simulateTransaction',params:[
+   btoa(String.fromCharCode(...bytes)),
+   {encoding:'base64',sigVerify:false,replaceRecentBlockhash:true,commitment:'confirmed'}
+  ]})
+ });
+ if(!response.ok)throw Error('Devnet check unavailable (HTTP '+response.status+'). Try again.');
+ const body=await response.json(),value=body.result?.value;
+ if(body.error||!value||!Object.hasOwn(value,'err'))throw Error('Devnet check unavailable: '+(body.error?.message||'Unexpected RPC response.'));
+ if(value.err!==null){
+  const logs=(value.logs||[]).filter(line=>/error|failed|deadline/i.test(line)).slice(-4);
+  throw Error('Devnet simulation failed: '+JSON.stringify(value.err)+(logs.length?' · '+logs.join(' · '):''));
+ }
+}
+async function checkAdminActivation(sdk,p){
+ const complete=new Error('Read-only simulation complete');
+ try{
+  await sdk.transact(p,{address:p.terms.authority,async signTransaction(tx){
+   await simulateAdminActivation(tx);
+   throw complete;
+  }},'activate');
+ }catch(error){if(error===complete)return;throw error;}
+ throw Error('Escrow client did not run the Devnet check.');
+}
 window.addEventListener('click',async e=>{
  const button=e.target.closest('[data-admin-task]');
  if(!button||route()!=='admin'||!account?.isAdmin||adminEscrowBusy)return;
@@ -637,12 +665,23 @@ window.addEventListener('click',async e=>{
  try{
   if(task==='connect'){await connectAdminEscrow(p,card.querySelector('[data-admin-provider]').value);notice.textContent='Settlement wallet connected.';}
   else if(task==='sync'){await adminEscrowSync(p);notice.textContent='Escrow synced.';}
+  else if(task==='check'){
+   notice.textContent='Checking activation on Devnet…';
+   await checkAdminActivation(await ensureEscrowClient(),p);
+   notice.textContent='Devnet simulation passed. Nothing was signed or sent.';
+   return;
+  }
   else if(task!=='refresh'){
    if(account.wallet!==p.terms.authority)throw Error('Sign in with the configured settlement wallet.');
    const connection=escrowConnection(p.terms.authority,false);
    if(!connection)throw Error('Reconnect the settlement wallet before approving.');
    const sdk=await ensureEscrowClient();
-   const result=await sdk.transact(p,escrowWalletAdapter(connection),task,p.winnerWallet);
+   const adapter=escrowWalletAdapter(connection);
+   const signing=task==='activate'?{address:adapter.address,async signTransaction(tx){
+    await simulateAdminActivation(tx);
+    return adapter.signTransaction(tx);
+   }}:adapter;
+   const result=await sdk.transact(p,signing,task,p.winnerWallet);
    try{await adminEscrowSync(p,result.poolAddress);}
    catch{throw Error('Transaction confirmed ('+result.signature+'). Versa could not sync it. Use Sync escrow before retrying.');}
    notice.textContent='Transaction confirmed and escrow synced.';
@@ -746,11 +785,10 @@ new MutationObserver(()=>{const button=document.querySelector('.chat-launcher');
 
 
 dialog.addEventListener('click',event=>{if(event.target===dialog)close();});syncCA();$('#year').textContent=new Date().getFullYear();const ref=new URLSearchParams(location.search).get('ref');if(ref&&/^VERSA-[A-Z0-9]{5,16}$/.test(ref)&&ref!==state.profile.referral&&!state.referredBy){state.referredBy=ref;save();}try{mountV2();render();void initBackend();}catch(error){console.error('Versa startup failed',error);main.innerHTML='<section class="wrap page-top"><h1>Unable to load Versa.</h1><p>Please reload the page to try again.</p><button class="btn" onclick="location.reload()">Reload Versa</button></section>';}
+window.addEventListener('click',handleVersaLink);
 })();
 
 
 
 
 
-
-window.addEventListener('click',handleVersaLink);
