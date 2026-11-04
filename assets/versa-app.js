@@ -558,6 +558,12 @@ window.addEventListener('submit',async e=>{if(e.target.id==='wizard-form'&&wizar
 window.addEventListener('change',e=>{if(e.target.name==='entryMode'){const fields=e.target.closest('form').querySelector('[data-paid-fields]');if(fields)fields.hidden=e.target.value!=='paid';}},true);
 window.addEventListener('click',async e=>{const el=e.target.closest('[data-tournament-view],[data-tournament-list],[data-tournament-action],[data-tournament-refresh],[data-tournament-share],[data-tournament-concede],[data-escrow-open],[data-escrow-deposit],[data-escrow-refund],[data-escrow-sync]');if(!el)return;e.preventDefault();e.stopImmediatePropagation();try{if(el.hasAttribute('data-tournament-view'))return selectTournament(el.dataset.tournamentView);if(el.hasAttribute('data-tournament-list'))return selectTournament(null);if(el.hasAttribute('data-tournament-refresh'))return void loadTournamentPage();if(el.hasAttribute('data-tournament-share')){await navigator.clipboard.writeText(el.dataset.tournamentShare);return toast('Tournament invite copied.');}if(el.hasAttribute('data-tournament-concede')){modal('CONCEDE THIS MATCH?',`<p>Your opponent will advance. This decision is final.</p><button class="btn outline" data-tournament-action="forfeit" data-tournament-id="${el.dataset.tournamentConcede}" data-challenge-id="${el.dataset.challengeId}">Confirm concession</button>`);return;}if(el.hasAttribute('data-escrow-open'))return await openEscrow(el.dataset.escrowOpen,el.dataset.escrowKind);if(el.hasAttribute('data-tournament-action')){if(!requireAccount())return;el.disabled=true;await api('/tournaments/'+el.dataset.tournamentId+'/'+el.dataset.tournamentAction,{method:'POST',body:JSON.stringify({challengeId:el.dataset.challengeId,confirm:el.dataset.tournamentAction==='forfeit'})});if(el.dataset.tournamentAction==='forfeit')close();return void loadTournamentPage();}if(el.hasAttribute('data-escrow-deposit')||el.hasAttribute('data-escrow-refund')||el.hasAttribute('data-escrow-sync')){const p=escrowDialogPlan;if(!p)throw Error('Reopen escrow and retry.');el.disabled=true;const sdk=await ensureEscrowClient(),result=el.hasAttribute('data-escrow-sync')?{poolAddress:sdk.poolAddress(p).toBase58()}:await sdk.transact(p,escrowWalletAdapter(),el.hasAttribute('data-escrow-deposit')?'deposit':'refund');await api((p.kind==='tournament'?'/tournaments/':'/challenges/')+p.key+'/escrow',{method:'POST',body:JSON.stringify({poolAddress:result.poolAddress})});toast(el.hasAttribute('data-escrow-sync')?'Escrow status refreshed.':'Escrow transaction finalized.');return await openEscrow(p.key,p.kind);}}catch(error){const target=document.querySelector('[data-escrow-error]')||document.querySelector('[data-tournament-error]');if(target)target.textContent=error.message;else toast(error.message);el.disabled=false;}},true);
 let escrowAdminJobs=[];
+function adminFundingExpired(p,now=Date.now()){
+ return p.status==='funding'&&Number.isFinite(p.terms.fundingDeadline)&&Math.floor(now/1000)>p.terms.fundingDeadline;
+}
+function adminCanActivate(p,now=Date.now()){
+ return p.canActivate&&!p.outcome&&!adminFundingExpired(p,now);
+}
 function adminEscrowPage(){
  const title='<p class="eyebrow">COMPETITION OPERATIONS</p><h1 class="section-title">Escrow Admin</h1>';
  const content=backendState==='loading'?'<p role="status">Checking access…</p>':backendState==='offline'?'<p>Versa could not verify your session. Reload to retry.</p>':!account?'<p>Sign in with your Versa administrator account.</p><button class="btn" data-wallet>Sign in</button>':!account.isAdmin?'<p>Administrator access required.</p>':'<div class="admin-escrow-bar"><div><strong>Settlement queue</strong><p>Activate funded entries, approve refunds, or pay confirmed winners.</p></div><button class="btn outline" data-admin-task="refresh">Refresh queue</button></div><div class="admin-stats" data-admin-stats></div><p data-admin-notice role="status" aria-live="polite"></p><div id="admin-escrow-jobs" aria-busy="true"><p>Loading escrow operations…</p></div>';
@@ -574,22 +580,25 @@ function adminEscrowWalletState(p){
  return '<p>Connect the settlement wallet to this site.</p><label>Wallet provider <select data-admin-provider>'+wallets.map(w=>'<option value="wallet:'+escape(w.name)+'" '+(preferred&&w.name.toLowerCase().includes(preferred)?'selected':'')+'>'+escape(w.name)+'</option>').join('')+'<option value="injected">Browser wallet</option></select></label> <button class="btn outline" data-admin-task="connect">Connect wallet</button>';
 }
 function renderAdminEscrows(root,jobs){
+ const now=Date.now();
  const stats=document.querySelector('[data-admin-stats]');
  if(stats)stats.innerHTML=[
   ['Open escrows',jobs.length],
-  ['Ready to activate',jobs.filter(p=>p.canActivate&&!p.outcome).length],
+  ['Ready to activate',jobs.filter(p=>adminCanActivate(p,now)).length],
   ['Payouts or refunds',jobs.filter(p=>p.outcome).length]
  ].map(([label,value])=>`<div><small>${label}</small><strong>${value}</strong></div>`).join('');
  root.replaceChildren();
  jobs.forEach((p,i)=>{
   const card=document.createElement('article');
   card.className='panel admin-escrow-card';card.dataset.job=i;
-  const action=p.outcome==='winner'?'pay':p.outcome==='refund'?'cancel':p.canActivate?'activate':'';
+  const expired=adminFundingExpired(p,now);
+  const action=p.outcome==='winner'?'pay':p.outcome==='refund'?'cancel':adminCanActivate(p,now)?'activate':'';
   const label={pay:'Pay confirmed winner',cancel:'Approve refunds',activate:'Activate funded escrow'}[action];
   const ready=account.wallet===p.terms.authority&&!!escrowConnection(p.terms.authority,false);
-  card.innerHTML=`<div class="admin-escrow-meta"><div><small>${p.kind==='tournament'?'Tournament':'Challenge'}</small><h2>${escape(p.terms.competitionId)}</h2></div><strong>${escape(String(p.status||'pending').replaceAll('_',' '))} · ${p.fundedCount||0}/${p.terms.wallets.length} funded</strong></div>
+  card.innerHTML=`<div class="admin-escrow-meta"><div><small>${p.kind==='tournament'?'Tournament':'Challenge'}</small><h2>${escape(p.terms.competitionId)}</h2></div><strong>${escape(String(expired?'funding expired':p.status||'pending').replaceAll('_',' '))} · ${p.fundedCount||0}/${p.terms.wallets.length} funded</strong></div>
   <p>Settlement wallet <code>${escape(p.terms.authority)}</code></p>${adminEscrowWalletState(p)}
-  ${p.canActivate&&Number.isFinite(p.terms.fundingDeadline)?`<p>Funding deadline: <time datetime="${new Date(p.terms.fundingDeadline*1000).toISOString()}">${escape(new Date(p.terms.fundingDeadline*1000).toLocaleString())}</time></p>`:''}
+  ${expired?'<p>Activation closed. Funded players can open their match escrow and choose Claim refund if they have not already claimed.</p>':''}
+  ${p.status==='funding'&&Number.isFinite(p.terms.fundingDeadline)?`<p>Funding deadline: <time datetime="${new Date(p.terms.fundingDeadline*1000).toISOString()}">${escape(new Date(p.terms.fundingDeadline*1000).toLocaleString())}</time></p>`:''}
   <div class="admin-escrow-actions">${action==='activate'?'<button class="btn outline" data-admin-task="check">Check on Devnet</button>':''}${action?`<button class="btn" data-admin-task="${action}" ${!ready|| (action==='pay'&&!p.winnerWallet)?'disabled':''}>${label}</button>`:''}<button class="btn outline" data-admin-task="sync">Sync escrow</button></div>`;
   root.append(card);
  });
@@ -663,6 +672,10 @@ window.addEventListener('click',async e=>{
  controls.forEach(el=>el.disabled=true);
  notice.textContent='';
  try{
+  if((task==='activate'||task==='check')&&!adminCanActivate(p)){
+   await loadAdminEscrows();
+   throw Error('This escrow is no longer ready to activate. Check the updated funding status.');
+  }
   if(task==='connect'){await connectAdminEscrow(p,card.querySelector('[data-admin-provider]').value);notice.textContent='Settlement wallet connected.';}
   else if(task==='sync'){await adminEscrowSync(p);notice.textContent='Escrow synced.';}
   else if(task==='check'){
