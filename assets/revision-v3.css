@@ -509,3 +509,37 @@ body .match-dialog .btn.outline::after{display:none!important}
 .wallet-dash-history li>div{min-width:0}
 .wallet-dash-history li>div+div{text-align:right}
 .wallet-dash-history li span{display:block;color:#bac9ad;font-size:12px;margin-top:4px}
+
+.account-settings{max-width:760px;margin-inline:auto}
+.account-settings .panel{margin:0 0 14px;padding:clamp(14px,3vw,24px)}
+.account-identity,.account-wallet-label,.account-connection,.account-connection>strong{display:flex;align-items:center;gap:12px;min-width:0;overflow-wrap:anywhere}
+.account-identity small,.account-wallet-label small{display:block;margin-top:4px;color:#bac9ad}
+.account-identity .player-avatar{flex-shrink:0}
+.account-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}
+.account-profile-card .account-two{grid-template-columns:minmax(0,1.45fr) minmax(0,1fr)}
+.account-two .btn,.account-wallet-card .btn,.account-exit{min-height:44px;font-size:clamp(9px,2.5vw,12px)!important;padding:9px 7px!important}
+.account-two .btn svg,.account-wallet-label svg,.account-connection svg{width:20px;height:20px;flex:0 0 20px}
+.account-two .fund-wallet,.account-redesign .btn.outline{background:transparent!important;border-color:var(--lime)!important}
+.account-connection{justify-content:space-between;padding:11px 0;border-top:1px solid #a3bf6740}
+.account-tag{color:var(--lime);font-size:11px;overflow-wrap:anywhere;min-width:0}
+.account-connections .btn{font-size:10px!important;padding:8px!important}
+.account-privacy summary{cursor:pointer;font-weight:bold}
+.account-privacy p{margin:10px 0 0}
+.account-exit,.account-wallet-card>.btn{width:100%}
+.account-wallet-card{border:1px solid #a3bf6760;padding:16px;margin-top:16px}
+.account-wallet-card>.btn{margin-top:12px}
+.account-signout{display:block;margin:16px auto 0;background:transparent;border:0;text-decoration:underline;color:#d4d8ce;padding:8px}
+.wallet-dashboard .wallet-dash-address{margin-top:14px}
+.wallet-dash-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.wallet-dash-head .section-title{margin-bottom:0}
+.wallet-dash-total>strong{display:block;font-size:clamp(23px,7vw,46px);color:var(--lime);overflow-wrap:anywhere}
+.wallet-dash-total>small{color:#bac9ad}
+.wallet-dash-breakdown{border-top:1px solid #a3bf6750;margin-top:14px;padding-top:12px}
+.wallet-dash-breakdown summary{cursor:pointer;font-weight:bold}
+.wallet-dash-breakdown dl{margin:0}
+.wallet-dash-breakdown dl>div{display:grid;grid-template-columns:minmax(0,.65fr) repeat(2,minmax(0,1fr));gap:8px;padding:10px 0;border-top:1px solid #a3bf6740;overflow-wrap:anywhere}
+.wallet-dash-breakdown dl>div:first-child{margin-top:12px}
+.wallet-dash-breakdown dd{margin:0}
+.wallet-dash-breakdown small{display:block;color:#bac9ad}
+.wallet-dash-address:focus{outline:1px solid var(--lime)}
+.wallet-link-picker .auth-x-button,.wallet-link-picker .auth-x-note,.wallet-link-picker .auth-divider{display:none!important}
