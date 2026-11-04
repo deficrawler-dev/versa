@@ -477,3 +477,10 @@ body .chat-launcher>span{display:none!important}body .chat-launcher svg{width:23
 .escrow-explorer{font-size:11px;color:#cbd4c8;text-decoration:underline;text-underline-offset:3px}
 .escrow-player-wallet button:focus-visible,.escrow-explorer:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
 .escrow-payment-dialog .close,.escrow-secondary-actions .btn.outline{border-color:var(--lime)!important}
+/* v4.1.2: accepted invite actions stay together at every viewport width. */
+body .match-dialog .match-actions:has(>[data-results-open]){display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;align-items:stretch!important}
+body .match-dialog .match-actions:has(>[data-results-open])>.btn{width:100%!important;min-width:0!important;max-width:none!important;margin:0!important;padding:12px 6px!important;min-height:48px!important;font-size:clamp(9px,2.4vw,12px)!important;line-height:1.25!important;letter-spacing:0!important;white-space:normal!important;overflow-wrap:break-word;box-sizing:border-box}
+/* One continuous cut-corner outline, without the old offset highlight lines. */
+body .match-dialog .btn.outline{position:relative!important;isolation:isolate;overflow:hidden;border:0!important;background:var(--lime)!important;background-image:none!important;box-shadow:none!important;clip-path:var(--game-cut)!important;color:#edf2e8!important;-webkit-text-fill-color:#edf2e8!important}
+body .match-dialog .btn.outline::before{content:''!important;display:block!important;position:absolute!important;inset:1px!important;background:#0a100e!important;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px))!important;border:0!important;box-shadow:none!important;z-index:-1!important;pointer-events:none}
+body .match-dialog .btn.outline::after{display:none!important}
