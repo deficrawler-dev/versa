@@ -316,21 +316,21 @@ function quizHome(){
  const arrow='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>';
  const icon=path=>'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="'+path+'" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
  const cards=[
- ['Crypto','01','THINK<br>ON CHAIN.','DeFi, cryptography & consensus','Start crypto quiz'],
- ['History','02','KNOW WHAT<br>CAME BEFORE.','Empires, events & discoveries','Play history'],
- ['General','03','A LITTLE OF<br>EVERYTHING.','Science, logic & culture','Play general']
+ ['Crypto','DeFi, cryptography & consensus'],
+ ['History','Empires, events & discoveries'],
+ ['General','Science, logic & culture']
  ];
- return `<section class="wrap page-top bottom quiz-page quiz-arena-v415" aria-labelledby="quiz-arena-title">
- <header class="qa-heading"><p class="qa-eyebrow">QUIZ ARENA<span aria-hidden="true"></span></p><h1 id="quiz-arena-title">YOUR NEXT CHALLENGE<br><em>STARTS HERE.</em></h1><p class="qa-intro">Choose a category. Beat the clock.</p></header>
+ return `<section class="wrap page-top bottom quiz-page quiz-arena-v416" aria-labelledby="quiz-arena-title">
+ <header class="qa-heading"><h1 id="quiz-arena-title">QUIZ ARENA.</h1><p class="qa-tagline">BEAT THE CLOCK.</p></header>
  <ul class="qa-rules" aria-label="Quiz format">
  <li>${icon('m13 2-9 12h7l-1 8 10-13h-8z')}<span>Free practice</span></li>
  <li>${icon('M9 5h11M9 12h11M9 19h11M3 5h1M3 12h1M3 19h1')}<span>10 questions</span></li>
  <li>${icon('M9 2h6M12 2v3m6 1 2-2M12 9v5l3-2M21 14a9 9 0 1 1-18 0 9 9 0 0 1 18 0')}<span>30s per question</span></li></ul>
- <div class="qa-grid">${cards.map(([name,num,title,description,label])=>`<article class="qa-tile qa-${name.toLowerCase()}" aria-labelledby="qa-${name.toLowerCase()}">
+ <div class="qa-grid">${cards.map(([name,description])=>`<article class="qa-tile qa-${name.toLowerCase()}" aria-labelledby="qa-${name.toLowerCase()}">
  <div class="qa-image" aria-hidden="true"><img src="/assets/quiz-${name.toLowerCase()}.webp" alt="" ${name==='Crypto'?'fetchpriority="high"':'loading="lazy"'}></div>
- <div class="qa-copy"><p class="qa-category"><span>${num} /</span> ${name}<i aria-hidden="true"></i></p><h2 id="qa-${name.toLowerCase()}">${title}</h2><p class="qa-description">${description}</p>
- <button class="btn qa-start" type="button" data-start-quiz="${name}">${label}${arrow}</button></div></article>`).join('')}</div>
- <p class="qa-footnote"><span aria-hidden="true"></span>Questions shuffle every round.<span aria-hidden="true"></span></p></section>`;
+ <div class="qa-copy"><p class="qa-level">Advanced</p><h2 id="qa-${name.toLowerCase()}">${name} Quiz</h2><p class="qa-description">${description}</p>
+ <button class="btn qa-start" type="button" data-start-quiz="${name}">Start quiz${arrow}</button></div></article>`).join('')}</div>
+</section>`;
 }
 const quizMemoryKey='versa-quiz-rotation-v32';let quizRotation={};try{quizRotation=JSON.parse(localStorage.getItem(quizMemoryKey)||'{}')||{};}catch{}
 function shuffled(items){const copy=items.slice();for(let i=copy.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[copy[i],copy[j]]=[copy[j],copy[i]];}return copy;}
