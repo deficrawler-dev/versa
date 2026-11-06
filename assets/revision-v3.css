@@ -745,3 +745,17 @@ body.versa-admin-mode #main{margin:0!important;padding:0!important;min-height:10
  .overview-v417 .ov-shortcut-copy{padding:18px}
  .overview-v417 .ov-shortcut-copy>strong{font-size:25px}
 }
+
+/* Overview spacing and unboxed challenge prompt, v4.1.19. */
+.overview-v417 .ov-empty{border:0;border-radius:0;background:transparent;box-shadow:none;padding:28px 12px}
+@media(min-width:1000px){
+ .overview-v417{grid-template-columns:minmax(0,2.5fr) minmax(230px,1fr);column-gap:20px}
+ .overview-v417 .welcome-strip{justify-content:flex-start;gap:24px}
+ .overview-v417 .welcome-strip>.text-link{margin-left:0;white-space:nowrap}
+ .overview-v417 .overview-hero{grid-column:1;grid-row:2;width:100%;max-width:100%;height:440px;min-height:440px;aspect-ratio:auto;box-sizing:border-box}
+ .overview-v417 .overview-hero>img{width:100%;height:100%;object-fit:cover;object-position:center}
+ .overview-v417 .ov-shortcuts{grid-column:2;grid-row:2;width:100%;max-width:100%;height:440px;min-width:0;box-sizing:border-box;grid-template-rows:repeat(2,minmax(0,1fr))}
+ .overview-v417 .ov-shortcut{width:100%;min-width:0;max-width:100%;box-sizing:border-box}
+ .overview-v417 .ov-shortcut-copy{box-sizing:border-box;padding:22px}
+ .overview-v417 .ov-match-area{grid-row:3}
+}
