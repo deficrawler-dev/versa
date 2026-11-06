@@ -716,3 +716,32 @@ body.versa-admin-mode #main{margin:0!important;padding:0!important;min-height:10
  .lb-wins{grid-column:3;grid-row:1}.lb-rate{grid-column:3;grid-row:2}.lb-played{grid-column:3;grid-row:3}
  .lb-profile{grid-column:4;grid-row:1/4;width:18px;font-size:24px}
 }
+
+/* Overview desktop hero with right-hand shortcuts, v4.1.18. */
+.ov-empty .ov-gamepad{display:block;width:46px;height:38px;margin:0 auto;color:#9ba4a7;opacity:.65}
+@media(min-width:1000px){
+ .overview-v417{display:grid;grid-template-columns:minmax(0,2.2fr) minmax(230px,1fr);column-gap:18px;row-gap:0;align-items:stretch}
+ .overview-v417 .welcome-strip{grid-column:1/-1}
+ .overview-v417 .overview-hero{grid-column:1;min-width:0;height:390px;min-height:390px;margin:0}
+ .overview-v417 .ov-shortcuts{grid-column:2;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:1fr 1fr;gap:14px;margin:0;min-width:0}
+ .overview-v417 .ov-shortcut{min-height:0}
+ .overview-v417 .ov-shortcut>img{width:100%;height:100%;object-position:65% center}
+ .overview-v417 .ov-shortcut::before{background:linear-gradient(90deg,#080b0df0,#080b0d99 62%,#080b0d30),linear-gradient(0deg,#080b0ddd,transparent 75%)}
+ .overview-v417 .ov-shortcut-copy{height:100%;justify-content:flex-end;padding:23px}
+ .overview-v417 .ov-shortcut-copy>strong{font-size:27px}
+ .overview-v417 .ov-shortcut-copy>small{font-size:12px}
+ .overview-v417 .overview-hero-copy{width:100%;max-width:none;padding:28px}
+ .overview-v417 .overview-hero h1{font-size:clamp(31px,3vw,47px)}
+ .overview-v417 .overview-actions{max-width:430px}
+ .overview-v417 .overview-hero::after{background:linear-gradient(90deg,#030507eb,#03050780 42%,#03050705 85%)}
+ .overview-v417 .ov-match-area{grid-column:1/-1;margin-top:22px}
+}
+@media(min-width:1000px) and (max-width:1200px){
+ .overview-v417{grid-template-columns:minmax(0,1.9fr) minmax(210px,1fr);column-gap:14px}
+ .overview-v417 .overview-hero-copy{padding:22px}
+ .overview-v417 .overview-hero h1{font-size:32px}
+ .overview-v417 .overview-actions{gap:8px}
+ .overview-v417 .overview-actions .btn{font-size:10px;padding:11px 7px}
+ .overview-v417 .ov-shortcut-copy{padding:18px}
+ .overview-v417 .ov-shortcut-copy>strong{font-size:25px}
+}
